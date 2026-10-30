@@ -220,7 +220,7 @@ class BlogIndexPage(RoutablePageMixin, Page):
                 messages.add_message(request, messages.INFO, msg)
             return redirect(self.url)
 
-        posts = self.get_posts(tag=tag)
+        posts = self.get_posts(tag=tag).order_by("-date_published")
         context = {"self": self, "tag": tag, "posts": posts}
         return render(request, "blog/blog_index_page.html", context)
 
